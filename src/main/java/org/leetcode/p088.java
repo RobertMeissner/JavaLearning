@@ -1,14 +1,11 @@
 package org.leetcode;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class p088 {
-    public void merge(int[] nums1, int m, int[] nums2, int n) {
-        // output: non-decreasing/increasing sorted merged array of both inputs
-        // backwards approach
 
-        // is there something to merge into the existing nums1?
-
-//        if (n > 0 && m > 0) {
-
+    private void mergeArrays(int[] nums1, int m, int[] nums2, int n) {
         int k = m + n - 1;
         int i = m - 1;
         int j = n - 1;
@@ -23,9 +20,20 @@ public class p088 {
             }
             k--;
         }
-//        } else if (n >0 && m == 0 ) {
-//            System.arraycopy(nums2, 0, nums1, 0, n);
-//
-//        }
+    }
+
+    private void mergeAsStream(int[] nums1, int m, int[] nums2, int n){
+        // less efficient; experimenting with Stream
+        int[] result = IntStream.concat(Arrays.stream(nums1, 0, m), Arrays.stream(nums2)).sorted().toArray();
+        System.arraycopy(result, 0, nums1, 0, m+n);
+    }
+
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        // output: non-decreasing/increasing sorted merged array of both inputs
+        // backwards approach
+
+        // mergeArrays(nums1, m, nums2, n);
+        mergeAsStream(nums1, m, nums2, n);
+
     }
 }

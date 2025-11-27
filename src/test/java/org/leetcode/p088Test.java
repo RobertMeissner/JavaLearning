@@ -26,7 +26,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{1,3,4}, nums1);
     }
 
@@ -38,7 +37,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{1,2,3,4}, nums1);
     }
 
@@ -50,7 +48,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{1,2,3,4}, nums1);
     }
     @Test public void emptyNums1(){
@@ -61,7 +58,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{3,4}, nums1);
     }
     @Test public void emptyNums2(){
@@ -72,7 +68,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{3,4}, nums1);
     }
     @Test public void singleElements(){
@@ -83,7 +78,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{1,3}, nums1);
     }
     @Test public void nums2LargerThanNums1(){
@@ -94,7 +88,6 @@ public class p088Test {
         int m = nums2.length;
         p088 solution = new p088();
         solution.merge(nums1, n,nums2, m);
-        System.out.printf(Arrays.toString(nums1));
         assertArrayEquals(new int[]{1,2,3}, nums1);
     }
 }
