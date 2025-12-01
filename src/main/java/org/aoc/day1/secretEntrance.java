@@ -23,16 +23,12 @@ public class secretEntrance {
         return lines.toArray(new String[0]);
     }
 
-    static int clampPosition(int unclamped){
+    static int clampPosition(int unclamped) {
         return ((unclamped % 100) + 100) % 100;
     }
 
     public int password(String filename) {
-        // 1. parse file input with list of strings
-        // 2. transform each line into an integer
-        // 3. go through the list of int; increase counter whenever we reach 0
-        // 4. return counter
-
+        reset();
         try {
             String[] lines = this.sequenceFromFile(filename);
             System.out.println("Number of lines: " + lines.length);
@@ -52,8 +48,52 @@ public class secretEntrance {
         return counter;
     }
 
+    public int passwordPassingZero(String filename) {
+        this.reset();
+        try {
+            String[] lines = this.sequenceFromFile(filename);
+            for (String line : lines) {
+                int wantedRotation = lineToInt(line);
+                int newPos = position + wantedRotation;
+                counter += crossings(newPos, position);
+
+                // clamp position
+                position = clampPosition(newPos);
+            }
+        } catch (IOException e) {
+            System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
+        }
+        return counter;
+    }
+
+    int crossings(int newPos, int current) {
+        System.out.println(current + "/" + newPos);
+        if (current < newPos) {
+            return Math.abs(Math.floorDiv(newPos, 100) - Math.floorDiv(current, 100));
+
+        } else if (current > newPos) {
+            return crossings(-newPos, -current);
+
+        } else return 0;
+    }
+
+    boolean clampingNeeded(int position) {
+        return (position > 100 || position < 0);
+    }
+
+    int largeRotation(int wantedRotation) {
+        return (Math.abs(wantedRotation) - 1) / 100;
+    }
+
     public void day1() {
         int result = this.password("aoc/day1/data");
+        System.out.println(result);
+    }
+
+    public void day1d1() {
+        int result = this.passwordPassingZero("aoc/day1/data");
+        System.out.println("Second part:");
         System.out.println(result);
     }
 
@@ -61,6 +101,7 @@ public class secretEntrance {
     public static void main(String[] args) {
         secretEntrance entrance = new secretEntrance();
         entrance.day1();
+        entrance.day1d1();
     }
 
     public void reset() {

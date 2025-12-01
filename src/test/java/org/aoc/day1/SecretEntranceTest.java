@@ -5,8 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 class SecretEntranceTest {
     private secretEntrance entrance;
@@ -58,5 +57,41 @@ class SecretEntranceTest {
     public void testOnlyLeft() {
         int password = entrance.password("aoc/day1/onlyLeftData");
         assertEquals(3, password);
+    }
+
+    @Test
+    public void largeRotation() {
+        assertEquals(0, entrance.largeRotation(0));
+        assertEquals(0, entrance.largeRotation(100));
+        assertEquals(1, entrance.largeRotation(101));
+        assertEquals(1, entrance.largeRotation(199));
+        assertEquals(0, entrance.largeRotation(-100));
+        assertEquals(1, entrance.largeRotation(-101));
+        assertEquals(1, entrance.largeRotation(-199));
+        assertEquals(1, entrance.largeRotation(-200));
+        assertEquals(2, entrance.largeRotation(-201));
+        assertEquals(2, entrance.largeRotation(-300));
+        assertEquals(2, entrance.largeRotation(300));
+    }
+
+    @Test
+    public void testClampingNeeded(){
+        assertFalse(entrance.clampingNeeded(0));
+        assertTrue(entrance.clampingNeeded(-1));
+        assertFalse(entrance.clampingNeeded(1));
+        assertFalse(entrance.clampingNeeded(100));
+        assertTrue(entrance.clampingNeeded(101));
+        assertTrue(entrance.clampingNeeded(-101));
+    }
+
+    @Test
+    public void testDay1d1() {
+        int password = entrance.passwordPassingZero("aoc/day1/day1d1Data");
+        assertEquals(13, password);
+    }
+    @Test
+    public void testDay1d1Edge() {
+        int password = entrance.passwordPassingZero("aoc/day1/day1d1DataEdge");
+        assertEquals(4, password);
     }
 }
