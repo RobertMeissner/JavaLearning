@@ -8,12 +8,11 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class SecretEntranceTest {
-    private secretEntrance entrance;
+    private SecretEntrance entrance;
 
     @BeforeEach
     public void setUp() {
-        entrance = new secretEntrance();
-        entrance.reset();
+        entrance = new SecretEntrance();
     }
 
     @Test
@@ -31,25 +30,25 @@ class SecretEntranceTest {
     }
 
     @Test
-    public void testLineToInt() {
-        assertEquals(-30, entrance.lineToInt("L30"));
-        assertEquals(20, entrance.lineToInt("R20"));
+    public void testParsedRotation() {
+        assertEquals(-30, entrance.parsedRotation("L30"));
+        assertEquals(20, entrance.parsedRotation("R20"));
     }
 
     @Test
-    public void testDay1() {
+    public void testSolvedPart1() {
         int password = entrance.password("aoc/day1/data");
         assertEquals(3, password);
     }
 
     @Test
     void testClamp(){
-        assertEquals(0, secretEntrance.clampPosition(0));
-        assertEquals(0, secretEntrance.clampPosition(100));
-        assertEquals(0, secretEntrance.clampPosition(-100));
-        assertEquals(82, secretEntrance.clampPosition(-18));
-        assertEquals(18, secretEntrance.clampPosition(118));
-        assertEquals(50, secretEntrance.clampPosition(-50));
+        assertEquals(0, SecretEntrance.clampPosition(0));
+        assertEquals(0, SecretEntrance.clampPosition(100));
+        assertEquals(0, SecretEntrance.clampPosition(-100));
+        assertEquals(82, SecretEntrance.clampPosition(-18));
+        assertEquals(18, SecretEntrance.clampPosition(118));
+        assertEquals(50, SecretEntrance.clampPosition(-50));
     }
 
 
