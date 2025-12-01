@@ -83,14 +83,6 @@ public final class SecretEntrance {
         } else return 0;
     }
 
-    boolean clampingNeeded(int position) {
-        return (position > 100 || position < 0);
-    }
-
-    int largeRotation(int wantedRotation) {
-        return (Math.abs(wantedRotation) - 1) / 100;
-    }
-
     public void solvedPart1() {
         int result = this.password("aoc/day1/data");
         logger.debug(result);
