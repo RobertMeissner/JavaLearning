@@ -1,0 +1,62 @@
+package org.aoc.day1;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
+class SecretEntranceTest {
+    private secretEntrance entrance;
+
+    @BeforeEach
+    public void setUp() {
+        entrance = new secretEntrance();
+        entrance.reset();
+    }
+
+    @Test
+    public void firstTest() {
+        assertThrows(IOException.class, () -> {
+            entrance.sequenceFromFile("");
+        });
+    }
+
+    @Test
+    public void testSequenceFromFile() throws IOException {
+        String[] result = entrance.sequenceFromFile("aoc/day1/readTestData");
+        assertEquals(1, result.length);
+        assertEquals("L68", result[0]);
+    }
+
+    @Test
+    public void testLineToInt() {
+        assertEquals(-30, entrance.lineToInt("L30"));
+        assertEquals(20, entrance.lineToInt("R20"));
+    }
+
+    @Test
+    public void testDay1() {
+        int password = entrance.password("aoc/day1/data");
+        assertEquals(3, password);
+    }
+
+    @Test
+    void testClamp(){
+        assertEquals(0, secretEntrance.clampPosition(0));
+        assertEquals(0, secretEntrance.clampPosition(100));
+        assertEquals(0, secretEntrance.clampPosition(-100));
+        assertEquals(82, secretEntrance.clampPosition(-18));
+        assertEquals(18, secretEntrance.clampPosition(118));
+        assertEquals(50, secretEntrance.clampPosition(-50));
+    }
+
+
+    @Test
+    public void testOnlyLeft() {
+        int password = entrance.password("aoc/day1/onlyLeftData");
+        assertEquals(3, password);
+    }
+}
