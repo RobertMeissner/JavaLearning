@@ -6,16 +6,14 @@ import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class Day3SolverServiceTest {
-    private InputReader inputReader;
     private Day3SolverService solver;
 
     @BeforeEach
     public void setUp() {
         ResourceLoader loader = new DefaultResourceLoader();
-        inputReader = new InputReader(loader);
+        InputReader inputReader = new InputReader(loader);
         solver = new Day3SolverService(inputReader);
     }
 

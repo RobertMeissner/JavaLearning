@@ -3,7 +3,6 @@ package org.aoc.day3;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
-import java.util.stream.IntStream;
 
 import static org.aoc.day3.Day3App.logger3;
 

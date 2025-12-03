@@ -9,7 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Day3App {
     public static Logger logger3 = LoggerFactory.getLogger("org.aoc");
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(Day3App.class, args);
 
     }
