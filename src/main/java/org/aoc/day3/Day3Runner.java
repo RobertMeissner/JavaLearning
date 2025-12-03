@@ -18,6 +18,9 @@ public class Day3Runner implements CommandLineRunner {
         int result = solver.part1();
 
         logger3.info("Result part1 {} joltage.", result);
+        long result_part2 = solver.part2();
+
+        logger3.info("Result part2 {} joltage.", result_part2);
 
     }
 }

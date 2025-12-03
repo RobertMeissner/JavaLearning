@@ -1,12 +1,9 @@
 package org.aoc.day3;
 
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+import java.util.stream.IntStream;
 
 import static org.aoc.day3.Day3App.logger3;
 
@@ -25,16 +22,47 @@ public class Day3SolverService {
 
         long maxBattery = Collections.max(batteries);
         int maxIndex = batteries.indexOf(maxBattery);
-        // next largest
 
-        long max2ndBattery;
         if (maxIndex < batteries.size() - 1) {
-            max2ndBattery = Collections.max(batteries.subList(maxIndex + 1, batteries.size()));
-            return List.of(new IndexedBattery[]{new IndexedBattery(0, maxBattery), new IndexedBattery(1, max2ndBattery)});
+            List<Long> subList = batteries.subList(maxIndex + 1, batteries.size());
+
+            return List.of(new IndexedBattery(0, maxBattery),
+                    new IndexedBattery(1, Collections.max(subList)));
         } else {
-            max2ndBattery = Collections.max(batteries.subList(0, maxIndex));
-            return List.of(new IndexedBattery[]{new IndexedBattery(0, max2ndBattery), new IndexedBattery(1, maxBattery)});
+            List<Long> subList = batteries.subList(0, maxIndex);
+
+            return List.of(new IndexedBattery(0, Collections.max(subList)),
+                    new IndexedBattery(1, maxBattery));
         }
+    }
+
+    private List<IndexedBattery> getTopNBatteries(List<Long> batteries) {
+        int n = 12;
+        List<IndexedBattery> result = new ArrayList<>();
+        int startIndex = 0;
+
+        for (int i = 0; i < n; i++) {
+            // For position i in result, we can search from startIndex up to and including batteries.size() - (n - i)
+            // After picking position j, we need (n - i - 1) more batteries from positions j+1 onwards
+            // batteries.size() - j - 1 >= n - i - 1, so j <= batteries.size() - (n - i)
+            int endIndex = batteries.size() - (n - i) + 1;  // +1 because loop uses j < endIndex
+
+            // Find max value in this window
+            long maxValue = Long.MIN_VALUE;
+            int maxIdx = startIndex;
+
+            for (int j = startIndex; j < endIndex; j++) {
+                if (batteries.get(j) > maxValue) {
+                    maxValue = batteries.get(j);
+                    maxIdx = j;
+                }
+            }
+
+            result.add(new IndexedBattery(maxIdx, maxValue));
+            startIndex = maxIdx + 1;
+        }
+
+        return result;
     }
 
     private long joltage(List<IndexedBattery> batteries) {
@@ -46,6 +74,15 @@ public class Day3SolverService {
         } else {
             return first.value() + second.value() * 10;
         }
+    }
+
+    private long joltage12Batteries(List<IndexedBattery> batteries) {
+        long joltage = 0;
+        for (int i = 0; i < batteries.size(); i++) {
+            joltage += batteries.get(i).value() * (long) Math.pow(10,
+                    batteries.size() - i - 1);
+        }
+        return joltage;
     }
 
     @FunctionalInterface
@@ -78,13 +115,12 @@ public class Day3SolverService {
         return solve(this::topTwoBatteries, this::joltage).intValue();
     }
 
-    @NotNull
     private static List<Long> toBatteries(String line) {
         return Arrays.stream(line.split("")).map(Long::parseLong).toList();
     }
 
     public Long part2() {
         logger3.debug("Running part2");
-        return solve(this::topTwoBatteries, this::joltage);
+        return solve(this::getTopNBatteries, this::joltage12Batteries);
     }
 }
