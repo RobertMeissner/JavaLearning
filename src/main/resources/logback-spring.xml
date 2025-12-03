@@ -11,8 +11,4 @@
     <logger name="org.aoc" level="DEBUG">
         <appender-ref ref="Console" />
     </logger>
-
-    <root level="INFO">
-        <appender-ref ref="Console" />
-    </root>
 </configuration>
