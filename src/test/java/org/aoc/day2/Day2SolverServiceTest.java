@@ -29,14 +29,14 @@ class Day2SolverServiceTest {
         logger.debug("test");
         List<String> lines = this.inputReader.readInput("data");
         assertEquals(11, lines.toArray().length);
-        int result = solver.part1();
+        Long result = solver.part1();
         assertEquals(1227775554, result);
     }
 
     @Test
     void testSingleRange() {
-        List<Integer> ids = solver.invalidIdsOfRange(new Range(11,22));
-        assertEquals(33, ids.stream().reduce(0, Integer::sum));
+        List<Long> ids = solver.invalidIdsOfRange(new Range(11,22));
+        assertEquals(33, ids.stream().reduce(0L, Long::sum));
     }
 
     @Test

@@ -1,5 +1,5 @@
 package org.aoc.day2;
 
 
-public record Range(int lower, int upper) {
+public record Range(long lower, long upper) {
 }
