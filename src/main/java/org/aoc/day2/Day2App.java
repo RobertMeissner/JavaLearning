@@ -11,7 +11,7 @@ public class Day2App {
 
     public static final Logger logger = LoggerFactory.getLogger("org.aoc");
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         SpringApplication.run(Day2App.class, args);
     }
 }

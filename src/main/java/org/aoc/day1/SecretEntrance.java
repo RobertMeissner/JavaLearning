@@ -95,7 +95,7 @@ public final class SecretEntrance {
     }
 
 
-    public static void main(String[] args) {
+    static void main() {
         SecretEntrance entrance = new SecretEntrance();
         entrance.solvedPart1();
         entrance.solvedPart2();
