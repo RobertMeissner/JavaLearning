@@ -23,18 +23,13 @@
     <Loggers>
         <Logger name="org.aoc" level="debug" additivity="false">
             <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
         </Logger>
 
-        <Root level="info">
-            <AppenderRef ref="Console"/>
-        </Root>
-
-        <!-- Uncomment to enable file logging -->
-        <!--
-        <Root level="info">
+        <Root level="debug">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="RollingFile"/>
         </Root>
-        -->
+
     </Loggers>
 </Configuration>

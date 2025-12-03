@@ -7,14 +7,14 @@ import java.nio.file.Paths;
 import java.util.List;
 import java.util.Objects;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public final class SecretEntrance {
     private static final int STARTING_POSITION = 50;
 
-    private static final Logger logger = LogManager.getLogger("org.aoc.day1");
+    private static final Logger logger = LoggerFactory.getLogger(SecretEntrance.class);
 
     public int parsedRotation(String line) {
         return Integer.parseInt(line.replace("R", "").replace("L", "-"));
@@ -85,13 +85,13 @@ public final class SecretEntrance {
 
     public void solvedPart1() {
         int result = this.password("aoc/day1/data");
-        logger.debug(result);
+        logger.debug("Result: {}", result);
     }
 
     public void solvedPart2() {
         int result = this.passwordPassingZero("aoc/day1/data");
         logger.debug("Second part:");
-        logger.debug(result);
+        logger.debug("Result: {}", result);
     }
 
 
