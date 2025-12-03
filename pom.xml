@@ -28,7 +28,26 @@
 	</scm>
 	<properties>
 		<java.version>25</java.version>
+		<start-class>org.aoc.day3.Day3App</start-class>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>day2</id>
+			<properties>
+				<start-class>org.aoc.day2.Day2App</start-class>
+			</properties>
+		</profile>
+		<profile>
+			<id>day3</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<start-class>org.aoc.day3.Day3App</start-class>
+			</properties>
+		</profile>
+	</profiles>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -47,6 +66,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${start-class}</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>

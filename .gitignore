@@ -45,3 +45,7 @@ build/
 .claude/**
 
 logs/
+
+# AoC data must be excluded
+src/main/resources/aoc/**
+src/test/resources/aoc/**
