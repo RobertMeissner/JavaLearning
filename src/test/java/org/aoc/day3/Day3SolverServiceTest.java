@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.core.io.ResourceLoader;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 public class Day3SolverServiceTest {
@@ -20,7 +21,7 @@ public class Day3SolverServiceTest {
 
     @Test
     public void testPart1() {
-        solver.part1();
-        assertFalse(true);
+        Integer result = solver.part1();
+        assertEquals(357,result);
     }
 }

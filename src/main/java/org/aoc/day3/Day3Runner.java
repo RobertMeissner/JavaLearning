@@ -15,7 +15,9 @@ public class Day3Runner implements CommandLineRunner {
     @Override
     public void run(String ... args){
         logger3.debug("Running day3");
-        solver.part1();
+        int result = solver.part1();
+
+        logger3.info("Result part1 {} joltage.", result);
 
     }
 }
