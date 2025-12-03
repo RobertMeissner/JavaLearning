@@ -24,4 +24,9 @@ public class Day3SolverServiceTest {
         Integer result = solver.part1();
         assertEquals(357,result);
     }
+    @Test
+    public void testPart2() {
+        Long result = solver.part2();
+        assertEquals(3121910778619L,result);
+    }
 }
