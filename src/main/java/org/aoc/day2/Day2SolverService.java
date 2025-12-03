@@ -12,6 +12,10 @@ import static org.aoc.day2.Day2App.logger;
 public class Day2SolverService {
     private final InputReader inputReader;
 
+    public Day2SolverService(InputReader inputReader) {
+        this.inputReader = inputReader;
+    }
+
     public boolean hasEvenLength(long value) {
         return String.valueOf(value).length() % 2 == 0;
     }
@@ -30,10 +34,10 @@ public class Day2SolverService {
         if (length < 2) return false;
 
         // check for repeating patterns
-        for (int patternLength = 1; patternLength <= length/2; patternLength++){
-            if (length % patternLength == 0){
+        for (int patternLength = 1; patternLength <= length / 2; patternLength++) {
+            if (length % patternLength == 0) {
                 String pattern = id.substring(0, patternLength);
-                if (id.equals(pattern.repeat(length/patternLength))){
+                if (id.equals(pattern.repeat(length / patternLength))) {
                     return true;
                 }
             }
@@ -42,7 +46,7 @@ public class Day2SolverService {
     }
 
     public List<Long> invalidIdsOfRange(Range range, Predicate<Long> isInvalid) {
-        List<Long> result = new ArrayList<>(List.of());
+        List<Long> result = new ArrayList<>();
         // brute forcing it
         for (long i = range.lower(); i <= range.upper(); i++) {
             if (isInvalid.test(i)) {
@@ -53,41 +57,26 @@ public class Day2SolverService {
         return result;
     }
 
-    public Range toRecord(String line) {
+    public Range fromString(String line) {
         String[] borders = line.split("-");
         return new Range(Long.parseLong(borders[0]), Long.parseLong(borders[1]));
     }
 
-    public Long part1() {
-        logger.debug("Running part1");
-        List<String> data = this.inputReader.readInput("data");
-        logger.debug(String.valueOf(data.toArray().length));
+    private Long solve(Predicate<Long> validator, String partName) {
+        logger.debug("Running {}", partName);
+        List<String> data = inputReader.readInput("data");
+        logger.debug("Processing {} lines", data.size());
 
-        List<Long> all_ids = new ArrayList<>();
-        for (String line : data) {
-            Range record = toRecord(line);
-            List<Long> invalidIds = invalidIdsOfRange(record, this::isInvalidPart1);
-            all_ids.addAll(invalidIds);
-        }
-        return all_ids.stream().reduce(0L, Long::sum);
+        return data.stream().map(this::fromString).flatMap(range -> invalidIdsOfRange(range, validator).stream()).mapToLong(Long::longValue).sum();
+
+    }
+
+    public Long part1() {
+        return solve(this::isInvalidPart1, "part1");
     }
 
     public Long part2() {
-        logger.debug("Running part2");
-        List<String> data = this.inputReader.readInput("data");
-        logger.debug(String.valueOf(data.toArray().length));
-
-        List<Long> all_ids = new ArrayList<>();
-        for (String line : data) {
-            Range record = toRecord(line);
-            List<Long> invalidIds = invalidIdsOfRange(record, this::isInvalidPart2);
-            all_ids.addAll(invalidIds);
-        }
-        return all_ids.stream().reduce(0L, Long::sum);
-
+        return solve(this::isInvalidPart2, "part2");
     }
 
-    public Day2SolverService(InputReader inputReader) {
-        this.inputReader = inputReader;
-    }
 }

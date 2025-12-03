@@ -40,8 +40,8 @@ class Day2SolverServiceTest {
     }
 
     @Test
-    void testToRecord() {
-        assertEquals(new Range(11, 22), solver.toRecord("11-22"));
+    void testFromString() {
+        assertEquals(new Range(11, 22), solver.fromString("11-22"));
     }
 
     @Test
