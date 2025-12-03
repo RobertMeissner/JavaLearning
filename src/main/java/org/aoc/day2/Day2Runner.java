@@ -18,5 +18,7 @@ public class Day2Runner implements CommandLineRunner {
         logger.debug("Running day 2{}", (Object) args);
         Long sum = solver.part1();
         logger.info("Sum of invalid ids: {}", sum);
+        sum = solver.part2();
+        logger.info("Sum of invalid ids part2: {}", sum);
     }
 }
