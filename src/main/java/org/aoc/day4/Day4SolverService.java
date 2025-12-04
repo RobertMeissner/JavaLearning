@@ -82,6 +82,17 @@ public class Day4SolverService {
         return count;
     }
 
+    public int[][] removeRemovableRolls(int[][] matrix, int[][] counts) {
+        int count = 0;
+        int size = matrix.length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrix[i][j] = counts[i][j] < 4 ? 0 : matrix[i][j];
+            }
+        }
+        return matrix;
+    }
+
 
     public int part1() {
         logger4.debug("Running part1");
@@ -90,10 +101,30 @@ public class Day4SolverService {
         List<String> data = reader.readInput("data");
         int[][] matrix = this.mapToMatrix(data);
 
-        logger4.debug(Arrays.toString(matrix));
         // count
         int[][] neighbors = countNeighbors(matrix);
         neighbors = removeEmptySpaces(matrix, neighbors);
         return this.rollsWithFourOrMoreNeighbors(neighbors);
+    }
+
+    public int part2() {
+        logger4.debug("Running part1");
+
+        // data
+        List<String> data = reader.readInput("data");
+        int[][] matrix = this.mapToMatrix(data);
+
+        int rollsToRemove = 0;
+        int newRollsToRemove = 10; // FIXME: Fake init value
+        while (newRollsToRemove > 0) {
+            int[][] neighbors = countNeighbors(matrix);
+
+            neighbors = removeEmptySpaces(matrix, neighbors.clone());
+            newRollsToRemove = this.rollsWithFourOrMoreNeighbors(neighbors);
+            rollsToRemove += newRollsToRemove;
+            // code smell: two matrices, may be confused, a safety mechanism would be helpful
+            matrix = removeRemovableRolls(matrix, neighbors);
+        }
+        return rollsToRemove;
     }
 }
