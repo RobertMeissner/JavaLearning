@@ -28,7 +28,7 @@
 	</scm>
 	<properties>
 		<java.version>25</java.version>
-		<start-class>org.aoc.day3.Day3App</start-class>
+		<start-class>org.aoc.day4.Day4App</start-class>
 	</properties>
 
 	<profiles>
@@ -40,13 +40,19 @@
 		</profile>
 		<profile>
 			<id>day3</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
 			<properties>
 				<start-class>org.aoc.day3.Day3App</start-class>
 			</properties>
 		</profile>
+        <profile>
+            <id>day4</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <start-class>org.aoc.day4.Day4App</start-class>
+            </properties>
+        </profile>
 	</profiles>
 	<dependencies>
 		<dependency>
