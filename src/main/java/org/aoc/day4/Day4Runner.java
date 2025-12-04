@@ -17,7 +17,9 @@ public class Day4Runner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         logger4.debug("Running day 4.");
-        long result = service.part1();
+        int result = service.part1();
         logger4.info("Result part1: {}", result);
+        result = service.part2();
+        logger4.info("Result part2: {}", result);
     }
 }

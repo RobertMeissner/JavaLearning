@@ -21,4 +21,8 @@ public class Day4SolverServiceTest {
     public void testPart1() {
         assertEquals(13, service.part1());
     }
+    @Test
+    public void testPart2() {
+        assertEquals(43, service.part2());
+    }
 }
