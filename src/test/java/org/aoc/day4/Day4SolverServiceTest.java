@@ -7,7 +7,7 @@ import org.springframework.core.io.ResourceLoader;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class Day4SolverServiceTest {
+public class Day4SolverServiceTest {
     private Day4SolverService service;
 
     @BeforeEach
@@ -19,6 +19,6 @@ class Day4SolverServiceTest {
 
     @Test
     public void testPart1() {
-        assertEquals(0L, service.part1());
+        assertEquals(13, service.part1());
     }
 }

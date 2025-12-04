@@ -9,7 +9,8 @@ import static org.aoc.day4.Day4App.logger4;
 public class Day4Runner implements CommandLineRunner {
     private Day4SolverService service;
 
-    public Day4Runner() {
+    public Day4Runner(Day4SolverService service) {
+        this.service = service;
 
     }
 
