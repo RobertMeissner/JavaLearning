@@ -88,6 +88,17 @@ public class Day4SolverService {
         return matrix;
     }
 
+    public int[][] removeRemovableRolls(int[][] matrix, int[][] counts) {
+        int count = 0;
+        int size = matrix.length;
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
+                matrix[i][j] = counts[i][j] < 4 ? 0 : matrix[i][j];
+            }
+        }
+        return matrix;
+    }
+
 
     public int part1() {
         logger4.debug("Running part1");
