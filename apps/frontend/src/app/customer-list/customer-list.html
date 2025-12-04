@@ -1,9 +1,12 @@
-<table>
-  <thead>
+<h2 >Customers: </h2>
+<table class="table table-hover">
+  <thead class="table-dark">
   <tr>
     <th>UserId</th>
     <th>First Name</th>
     <th>Last Name</th>
+    <th>E-Mail</th>
+    <th>Salary</th>
   </tr>
   </thead>
   <tbody>
@@ -12,6 +15,8 @@
         <td>{{ customer.userId }}</td>
         <td>{{ customer.firstName }}</td>
         <td>{{ customer.lastName }}</td>
+        <td>{{ customer.email }}</td>
+        <td>{{ customer.salary | currency:"EUR" }}</td>
       </tr>
     }
   </tbody>
